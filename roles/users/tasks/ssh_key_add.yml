@@ -1,5 +1,6 @@
 ---
 - name: Deploy SSH Key
-  authorized_key: user='{{ user_name }}'
-                  key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-                  state=present
+  ansible.posix.authorized_key:
+    user='{{ user_name }}'
+    key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    state=present

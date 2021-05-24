@@ -10,6 +10,7 @@
     system: false
   tags:
     - users_add
+
 - name: Disable password login
   lineinfile: dest=/etc/ssh/sshd_config regexp="#PasswordAuthentication yes" line="PasswordAuthentication no" state=present
   notify:
