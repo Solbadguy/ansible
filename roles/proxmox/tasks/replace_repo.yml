@@ -1,0 +1,26 @@
+- name: Add a line to a file
+  lineinfile:
+    path: /etc/apt/sources.list.d/pve-non-enterprise.list
+    line: deb http://download.proxmox.com/debian/pve buster pve-no-subscription
+    create: yes
+
+- name: disable enterprise repo
+  lineinfile:
+    path: /etc/apt/sources.list.d/pve-enterprise.list
+    regexp: deb https://enterprise.proxmox.com/debian/pve buster pve-enterprise
+    line: #deb https://enterprise.proxmox.com/debian/pve buster pve-enterprise
+    backrefs: yes
+
+- name: backup file                         
+  ansible.builtin.copy:
+    src: /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
+    dest: /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js_bk
+
+- name: "Remove subscribe notice"
+  replace:
+    path: /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
+    regexp: Ext.Msg.show({
+    replace: void({ //Ext.Msg.show({
+
+- name: Upgrade all apt packages
+  apt: upgrade=dist force_apt_get=yes
