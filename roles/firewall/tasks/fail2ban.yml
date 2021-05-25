@@ -1,0 +1,9 @@
+- name: Install ufw
+  apt:
+    name: fail2ban
+    state: present
+
+- name: Enable service ufw
+  ansible.builtin.service:
+    name: fail2ban
+    enabled: yes

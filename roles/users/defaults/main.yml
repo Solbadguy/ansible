@@ -1,4 +1,4 @@
 user_name: ansible
-ssh_key1: ~/.ssh/username1.pub
+ssh_key1: ssh_keys/evgeniy_OK.pub
 ssh_key2: ~/.ssh/username2.pub
 bashrc: files/.bashrc

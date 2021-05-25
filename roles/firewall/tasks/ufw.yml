@@ -13,4 +13,28 @@
     rule: allow
     port: "{{ ssh_port }}"
     proto: tcp
- 
+
+- name: "UFW - Allow HTTPS on port "
+  ufw:
+    rule: allow
+    port: 8006
+    proto: tcp
+    src: "{{ ip_admin }}", "{{ ip_admin2 }}", "{{ ip_admin3 }}"
+
+- name: Install knockd
+  apt:
+    name: knockd
+    state: present
+
+- name: Enable service knockd
+  ansible.builtin.service:
+    name: knockd
+    enabled: yes
+
+- name: Copy knockd.conf file with owner and permissions
+  ansible.builtin.copy:
+    src: "{{ knockd_conf }}"
+    dest: /etc/
+    owner: root
+    group: root
+    mode: '0644'
