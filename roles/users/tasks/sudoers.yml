@@ -1,6 +1,6 @@
---- 
-- 
-  copy: 
+---
+-
+  copy:
     content: "{{ user_name }}  ALL=(ALL) NOPASSWD: ALL"
     dest: "/etc/sudoers.d/{{ user_name }}"
   name: "Add user to the sudoers"

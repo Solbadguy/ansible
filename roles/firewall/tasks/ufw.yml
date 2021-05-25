@@ -1,0 +1,16 @@
+- name: Install ufw
+  apt:
+    name: ufw
+    state: present
+
+- name: Enable service ufw
+  ansible.builtin.service:
+    name: ufw
+    enabled: yes
+
+- name: "UFW - Allow HTTP on port {{ ssh_port }}"
+  ufw:
+    rule: allow
+    port: "{{ ssh_port }}"
+    proto: tcp
+ 

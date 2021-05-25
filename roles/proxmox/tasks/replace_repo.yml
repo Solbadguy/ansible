@@ -11,7 +11,7 @@
     line: #deb https://enterprise.proxmox.com/debian/pve buster pve-enterprise
     backrefs: yes
 
-- name: backup file                         
+- name: backup file
   ansible.builtin.copy:
     src: /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
     dest: /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js_bk

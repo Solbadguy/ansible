@@ -15,3 +15,11 @@
   lineinfile: dest=/etc/ssh/sshd_config regexp="#PasswordAuthentication yes" line="PasswordAuthentication no" state=present
   notify:
     - ssh restart
+
+- name: Copy bashrc file with owner and permissions
+  ansible.builtin.copy:
+    src: "{{ bashrc }}"
+    dest: "/home/{{ user_name }}"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: '0644'
